@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Enterprises – Electrical Appliances | Patna, Bihar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --red: #c0392b;
+  --red-dark: #962d22;
+  --red-light: #fdf2f1;
+  --ink: #1a1a1a;
+  --ink2: #3d3d3d;
+  --muted: #7a7a7a;
+  --border: #e8e8e8;
+  --bg: #fafafa;
+  --white: #ffffff;
+}
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* TOP BAR */
+.topbar { background: var(--ink); padding: 9px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+.topbar-left { display: flex; gap: 24px; }
+.topbar-right { display: flex; gap: 20px; }
+.topbar-right a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.topbar-right a:hover { color: #fff; }
+
+/* HEADER */
+header { background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 5%; gap: 24px; }
+.logo-name { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--red); }
+.logo-tag { font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; font-weight: 400; }
+.header-search { flex: 1; max-width: 480px; display: flex; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
+.header-search:focus-within { border-color: var(--red); }
+.header-search input { flex: 1; padding: 10px 16px; border: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 0.92rem; color: var(--ink); background: transparent; }
+.header-search input::placeholder { color: var(--muted); }
+.search-btn { background: var(--red); border: none; padding: 0 20px; color: #fff; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
+.search-btn:hover { background: var(--red-dark); }
+.header-actions { display: flex; gap: 22px; }
+.action-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--ink2); font-size: 0.7rem; letter-spacing: 0.4px; gap: 3px; text-decoration: none; transition: color 0.2s; }
+.action-item:hover { color: var(--red); }
+.action-icon { font-size: 1.25rem; }
+
+/* NAV */
+nav { background: var(--red); }
+.nav-inner { display: flex; padding: 0 5%; overflow-x: auto; }
+.nav-item { padding: 13px 20px; color: rgba(255,255,255,0.85); font-size: 0.87rem; font-weight: 500; cursor: pointer; text-decoration: none; display: block; border-bottom: 3px solid transparent; margin-bottom: -3px; transition: background 0.15s, color 0.15s, border-color 0.15s; white-space: nowrap; }
+.nav-item:hover, .nav-item.active { background: rgba(0,0,0,0.15); color: #fff; border-bottom-color: #fff; }
+.nav-offers { margin-left: auto; color: #ffd1ca !important; font-weight: 700 !important; }
+
+/* HERO */
+.hero { background: linear-gradient(108deg, #160808 0%, #2a0e0e 50%, #1c1010 100%); min-height: 480px; display: flex; align-items: center; position: relative; overflow: hidden; padding: 70px 5%; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 50%, rgba(192,57,43,0.22) 0%, transparent 58%); }
+.hero-grid-pattern { position: absolute; inset: 0; opacity: 0.025; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 1px, transparent 0, transparent 50%); background-size: 18px 18px; }
+.hero-left { position: relative; z-index: 2; max-width: 560px; animation: heroIn 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.45); color: #f1a99a; font-size: 0.74rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; margin-bottom: 22px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); color: #fff; line-height: 1.12; font-weight: 700; margin-bottom: 18px; }
+.hero h1 em { color: #f4a89a; font-style: italic; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 34px; font-weight: 300; max-width: 440px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-main { background: var(--red); color: #fff; border: none; padding: 13px 30px; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+.btn-main:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.22); padding: 13px 26px; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+.btn-outline:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
+.hero-stats { display: flex; gap: 36px; margin-top: 44px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: #f4a89a; line-height: 1; }
+.stat-label { font-size: 0.73rem; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; margin-top: 4px; }
+.hero-cards { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 2; }
+.hero-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 16px 22px; min-width: 195px; backdrop-filter: blur(8px); animation: slideLeft 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-card:nth-child(2) { animation-delay: 0.1s; }
+.hero-card:nth-child(3) { animation-delay: 0.2s; }
+.hc-icon { font-size: 1.4rem; margin-bottom: 7px; }
+.hc-label { font-size: 0.76rem; color: rgba(255,255,255,0.45); }
+.hc-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #f4a89a; margin-top: 2px; }
+
+/* MARQUEE */
+.marquee-bar { background: var(--white); border-bottom: 1px solid var(--border); overflow: hidden; padding: 11px 0; }
+.marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
+.m-item { padding: 0 34px; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-right: 1px solid var(--border); white-space: nowrap; transition: color 0.2s; }
+.m-item:hover { color: var(--red); }
+
+/* SECTIONS */
+.section { padding: 72px 5%; }
+.section-white { background: var(--white); }
+.eyebrow { font-size: 0.71rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.eyebrow::after { content: ''; display: block; height: 1.5px; width: 28px; background: var(--red); opacity: 0.35; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; color: var(--ink); line-height: 1.2; }
+.section-sub { font-size: 0.9rem; color: var(--muted); margin-top: 8px; font-weight: 400; }
+.row-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; }
+.view-all { font-size: 0.83rem; color: var(--red); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: border-color 0.2s; white-space: nowrap; }
+.view-all:hover { border-bottom-color: var(--red); }
+
+/* CATEGORIES */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 14px; }
+.cat-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 8px; padding: 28px 16px 22px; text-align: center; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.22s; text-decoration: none; display: block; }
+.cat-card:hover { border-color: var(--red); box-shadow: 0 6px 22px rgba(192,57,43,0.1); transform: translateY(-3px); }
+.cat-emoji { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+.cat-name { font-size: 0.87rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.cat-count { font-size: 0.73rem; color: var(--muted); }
+
+/* OFFERS */
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 20px; }
+.offer-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s; }
+.offer-card:hover { border-color: rgba(192,57,43,0.25); box-shadow: 0 14px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.offer-img-wrap { background: linear-gradient(135deg, #f9eeee 0%, #fce8e6 100%); height: 186px; display: flex; align-items: center; justify-content: center; position: relative; font-size: 5rem; }
+.badge-sale { position: absolute; top: 14px; left: 14px; background: var(--red); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; }
+.badge-tag { position: absolute; top: 14px; right: 14px; background: #1a6b3a; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 3px; }
+.offer-body { padding: 20px; }
+.offer-brand { font-size: 0.71rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.offer-name { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.offer-spec { font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
+.divider { height: 1px; background: var(--border); margin-bottom: 14px; }
+.price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+.price-new { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+.price-old { font-size: 0.86rem; color: var(--muted); text-decoration: line-through; }
+.price-save { font-size: 0.74rem; color: #16a34a; font-weight: 600; background: #f0fdf4; padding: 2px 8px; border-radius: 20px; }
+.emi-note { font-size: 0.75rem; color: var(--muted); margin-bottom: 14px; }
+.btn-buy { width: 100%; padding: 12px; background: var(--red); color: #fff; border: none; border-radius: 5px; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; letter-spacing: 0.3px; }
+.btn-buy:hover { background: var(--red-dark); }
+
+/* PROMO STRIP */
+.promo-strip { background: linear-gradient(90deg, #160808 0%, #2a0e0e 100%); padding: 44px 5%; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.promo-strip h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.8rem); color: #fff; margin-bottom: 6px; }
+.promo-strip p { font-size: 0.88rem; color: rgba(255,255,255,0.48); max-width: 500px; line-height: 1.6; }
+
+/* WHY US */
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px, 1fr)); gap: 2px; border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--border); }
+.why-card { background: var(--white); padding: 36px 26px; transition: background 0.2s; }
+.why-card:hover { background: var(--red-light); }
+.why-icon-wrap { width: 48px; height: 48px; border-radius: 8px; background: var(--red-light); border: 1.5px solid rgba(192,57,43,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 18px; }
+.why-title { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.why-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
+
+/* TESTIMONIALS */
+.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 20px; }
+.test-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 26px; transition: box-shadow 0.22s, border-color 0.22s; }
+.test-card:hover { border-color: rgba(192,57,43,0.2); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+.test-stars { color: #d97706; font-size: 0.92rem; letter-spacing: 2px; margin-bottom: 12px; }
+.test-quote { font-size: 2rem; color: var(--red); opacity: 0.18; font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: -4px; }
+.test-text { font-size: 0.9rem; color: var(--ink2); line-height: 1.75; margin-bottom: 20px; }
+.test-author-row { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+.test-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--red-dark), #e74c3c); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.93rem; flex-shrink: 0; }
+.test-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+.test-city { font-size: 0.74rem; color: var(--muted); }
+.verified { color: #16a34a; font-weight: 600; }
+
+/* FOOTER */
+footer { background: #111; color: rgba(255,255,255,0.55); font-size: 0.87rem; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 48px; padding: 64px 5% 48px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 14px; }
+.footer-logo span { color: var(--red); }
+.footer-about { font-size: 0.84rem; line-height: 1.75; color: rgba(255,255,255,0.4); margin-bottom: 22px; }
+.footer-social { display: flex; gap: 10px; }
+.soc-btn { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.92rem; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.soc-btn:hover { background: var(--red); border-color: var(--red); }
+.footer-col h5 { color: rgba(255,255,255,0.8); font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.contact-item { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
+.contact-icon { flex-shrink: 0; margin-top: 1px; opacity: 0.65; }
+.contact-text { color: rgba(255,255,255,0.42); font-size: 0.84rem; line-height: 1.65; }
+.hours-badge { display: inline-block; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); color: #f1a99a; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; padding: 5px 12px; border-radius: 3px; margin-top: 8px; }
+.footer-bottom { padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: rgba(255,255,255,0.22); flex-wrap: wrap; gap: 10px; }
+.footer-bottom a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+.footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+.footer-bottom-links { display: flex; gap: 20px; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+
+/* KEYFRAMES */
+@keyframes heroIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* RESPONSIVE */
+@media (max-width: 960px) { .hero-cards { display: none; } .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; } .topbar { display: none; } }
+@media (max-width: 600px) { .header-inner { flex-wrap: wrap; } .header-search { order: 3; flex: 100%; max-width: 100%; } .footer-top { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>📍 Patna, Bihar — 800001</span>
+    <span>📞 +91 98765 43210</span>
+    <span>🕐 Mon–Sat: 10am – 8pm</span>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Track Order</a>
+    <a href="#">EMI Options</a>
+    <a href="#">Service Centre</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo-name">Harsh Enterprises</div>
+      <div class="logo-tag">Electrical Appliances — Est. 1998</div>
+    </div>
+    <div class="header-search">
+      <input type="text" placeholder="Search ACs, Refrigerators, Smart TVs…">
+      <button class="search-btn">🔍</button>
+    </div>
+    <div class="header-actions">
+      <a href="#" class="action-item"><span class="action-icon">💛</span>Wishlist</a>
+      <a href="#" class="action-item"><span class="action-icon">🛒</span>Cart</a>
+      <a href="#" class="action-item"><span class="action-icon">👤</span>Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-item active" href="#categories">All Products</a>
+    <a class="nav-item" href="#categories">Air Conditioners</a>
+    <a class="nav-item" href="#categories">Refrigerators</a>
+    <a class="nav-item" href="#categories">Washing Machines</a>
+    <a class="nav-item" href="#categories">Smart TVs</a>
+    <a class="nav-item" href="#categories">Geysers</a>
+    <a class="nav-item" href="#categories">Small Appliances</a>
+    <a class="nav-item nav-offers" href="#offers">🔥 Today's Deals</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">⚡ Patna's Most Trusted Store</div>
+    <h1>Quality Appliances,<br><em>Fair Price.</em><br>Every Time.</h1>
+    <p class="hero-sub">From top-rated ACs to intelligent smart TVs — we carry 25+ leading brands with genuine warranty and reliable after-sales service.</p>
+    <div class="hero-btns">
+      <a href="#offers" class="btn-main">Shop Current Offers</a>
+      <a href="#categories" class="btn-outline">Browse All Products</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">50,000+</div><div class="stat-label">Customers Served</div></div>
+      <div><div class="stat-num">25+</div><div class="stat-label">Top Brands</div></div>
+      <div><div class="stat-num">26 Yrs</div><div class="stat-label">In Business</div></div>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="hero-card"><div class="hc-icon">❄️</div><div class="hc-label">AC Season Offer</div><div class="hc-val">Up to 35% Off</div></div>
+    <div class="hero-card"><div class="hc-icon">🚚</div><div class="hc-label">Delivery in Patna</div><div class="hc-val">Free of Charge</div></div>
+    <div class="hero-card"><div class="hc-icon">💳</div><div class="hc-label">Easy EMI</div><div class="hc-val">0% for 12 months</div></div>
+  </div>
+</section>
+
+<!-- BRAND MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <div class="m-item">Samsung</div><div class="m-item">LG</div><div class="m-item">Voltas</div>
+    <div class="m-item">Daikin</div><div class="m-item">Whirlpool</div><div class="m-item">Bosch</div>
+    <div class="m-item">Haier</div><div class="m-item">Sony</div><div class="m-item">Panasonic</div>
+    <div class="m-item">Godrej</div><div class="m-item">Blue Star</div><div class="m-item">Bajaj</div>
+    <!-- duplicate for seamless loop -->
+    <div class="m-item">Samsung</div><div class="m-item">LG</div><div class="m-item">Voltas</div>
+    <div class="m-item">Daikin</div><div class="m-item">Whirlpool</div><div class="m-item">Bosch</div>
+    <div class="m-item">Haier</div><div class="m-item">Sony</div><div class="m-item">Panasonic</div>
+    <div class="m-item">Godrej</div><div class="m-item">Blue Star</div><div class="m-item">Bajaj</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section section-white" id="categories">
+  <div class="row-head reveal">
+    <div><div class="eyebrow">Shop by Category</div><h2 class="section-title">What are you looking for?</h2></div>
+    <a href="#" class="view-all">View All →</a>
+  </div>
+  <div class="cat-grid">
+    <a href="#" class="cat-card reveal"><span class="cat-emoji">❄️</span><div class="cat-name">Air Conditioners</div><div class="cat-count">48 products</div></a>
+    <a href="#" class="cat-card reveal d1"><span class="cat-emoji">🧊</span><div class="cat-name">Refrigerators</div><div class="cat-count">62 products</div></a>
+    <a href="#" class="cat-card reveal d2"><span class="cat-emoji">📺</span><div class="cat-name">Smart TVs</div><div class="cat-count">54 products</div></a>
+    <a href="#" class="cat-card reveal d3"><span class="cat-emoji">🫧</span><div class="cat-name">Washing Machines</div><div class="cat-count">38 products</div></a>
+    <a href="#" class="cat-card reveal"><span class="cat-emoji">🔥</span><div class="cat-name">Microwaves</div><div class="cat-count">24 products</div></a>
+    <a href="#" class="cat-card reveal d1"><span class="cat-emoji">🚿</span><div class="cat-name">Geysers</div><div class="cat-count">19 products</div></a>
+    <a href="#" class="cat-card reveal d2"><span class="cat-emoji">💨</span><div class="cat-name">Fans & Coolers</div><div class="cat-count">41 products</div></a>
+    <a href="#" class="cat-card reveal d3"><span class="cat-emoji">🔌</span><div class="cat-name">Small Appliances</div><div class="cat-count">85 products</div></a>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="section" id="offers">
+  <div class="row-head reveal">
+    <div>
+      <div class="eyebrow">Limited Time</div>
+      <h2 class="section-title">Today's Best Deals</h2>
+      <p class="section-sub">Prices updated daily — stock is limited.</p>
+    </div>
+    <a href="#" class="view-all">All Offers →</a>
+  </div>
+  <div class="offers-grid">
+    <div class="offer-card reveal">
+      <div class="offer-img-wrap"><span>❄️</span><div class="badge-sale">35% OFF</div><div class="badge-tag">BEE 5★</div></div>
+      <div class="offer-body">
+        <div class="offer-brand">Voltas</div>
+        <div class="offer-name">1.5 Ton 5-Star Inverter Split AC</div>
+        <div class="offer-spec">Auto Clean · Wi-Fi Ready · Dual Filtration</div>
+        <div class="divider"></div>
+        <div class="price-row"><span class="price-new">₹32,999</span><span class="price-old">₹50,990</span><span class="price-save">Save ₹18K</span></div>
+        <div class="emi-note">or ₹2,750/mo at 0% EMI for 12 months</div>
+        <button class="btn-buy">Add to Cart</button>
+      </div>
+    </div>
+    <div class="offer-card reveal d1">
+      <div class="offer-img-wrap"><span>📺</span><div class="badge-sale">28% OFF</div></div>
+      <div class="offer-body">
+        <div class="offer-brand">Samsung</div>
+        <div class="offer-name">55" 4K Crystal UHD Smart TV</div>
+        <div class="offer-spec">Alexa Built-in · 4K Upscaling · Slim Bezel</div>
+        <div class="divider"></div>
+        <div class="price-row"><span class="price-new">₹43,990</span><span class="price-old">₹60,990</span><span class="price-save">Save ₹17K</span></div>
+        <div class="emi-note">or ₹3,666/mo at 0% EMI for 12 months</div>
+        <button class="btn-buy">Add to Cart</button>
+      </div>
+    </div>
+    <div class="offer-card reveal d2">
+      <div class="offer-img-wrap"><span>🧊</span><div class="badge-sale">22% OFF</div><div class="badge-tag">BESTSELLER</div></div>
+      <div class="offer-body">
+        <div class="offer-brand">LG</div>
+        <div class="offer-name">260L Frost Free Double Door Refrigerator</div>
+        <div class="offer-spec">Smart Inverter · Door Cooling+ · 10yr Warranty</div>
+        <div class="divider"></div>
+        <div class="price-row"><span class="price-new">₹25,990</span><span class="price-old">₹33,490</span><span class="price-save">Save ₹7.5K</span></div>
+        <div class="emi-note">or ₹2,166/mo at 0% EMI for 12 months</div>
+        <button class="btn-buy">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip reveal">
+  <div>
+    <h3>Exchange your old appliance — Get up to ₹8,000 off</h3>
+    <p>Bring in any working or non-working appliance and receive an instant exchange discount on your new purchase. Valid in-store at Patna.</p>
+  </div>
+  <a href="#" class="btn-main" style="flex-shrink:0;">Know More →</a>
+</div>
+
+<!-- WHY US -->
+<section class="section section-white" id="why">
+  <div style="margin-bottom:44px;" class="reveal">
+    <div class="eyebrow">Why Harsh Enterprises</div>
+    <h2 class="section-title">Patna's Choice Since 1998</h2>
+    <p class="section-sub">26 saal ki mehnat, ek hi wada — genuine product, best price, honest service.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon-wrap">🏆</div><div class="why-title">100% Genuine Products</div><div class="why-desc">Every product sourced directly from authorised brand distributors. No grey market, no duplicates — manufacturer warranty on everything.</div></div>
+    <div class="why-card reveal d1"><div class="why-icon-wrap">💰</div><div class="why-title">Best Price Guarantee</div><div class="why-desc">Found it cheaper elsewhere in Patna? Show us the bill and we will match or beat it — no questions asked.</div></div>
+    <div class="why-card reveal d2"><div class="why-icon-wrap">🚚</div><div class="why-title">Free Home Delivery</div><div class="why-desc">Free delivery and professional installation across Patna city. Same-day delivery available on select items.</div></div>
+    <div class="why-card reveal d3"><div class="why-icon-wrap">🛡️</div><div class="why-title">Extended Warranty</div><div class="why-desc">We offer 1 year additional free service warranty on top of the manufacturer's warranty — at no extra cost.</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="row-head reveal">
+    <div><div class="eyebrow">Customer Reviews</div><h2 class="section-title">What Patna Says About Us</h2></div>
+    <a href="#" class="view-all">All Reviews →</a>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">AC liya pichle mahine — delivery same day ho gayi aur installation bhi bilkul free. Staff bahut helpful tha, sahi model suggest kiya budget mein. Price bhi Amazon se better tha.</p>
+      <div class="test-author-row">
+        <div class="test-avatar">R</div>
+        <div><div class="test-name">Rahul Kumar</div><div class="test-city">Rajendra Nagar, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
+      </div>
+    </div>
+    <div class="test-card reveal d1">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">10 saal se yahan se hi le rahe hain. Kabhi koi issue nahi aaya. Jab bhi service ki zarurat hui, inke log aa gaye. Patna mein itna trustworthy store dusra nahi hai.</p>
+      <div class="test-author-row">
+        <div class="test-avatar">S</div>
+        <div><div class="test-name">Sunita Devi</div><div class="test-city">Kankarbagh, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
+      </div>
+    </div>
+    <div class="test-card reveal d2">
+      <div class="test-stars">★★★★☆</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">Washing machine ke liye aaya tha. Exchange offer mein ₹6,000 ka discount mila. Bade bhai ne recommend kiya tha Harsh Enterprises — sach mein bahut achha experience raha.</p>
+      <div class="test-author-row">
+        <div class="test-avatar">A</div>
+        <div><div class="test-name">Abhishek Singh</div><div class="test-city">Boring Road, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Harsh <span>Enterprises</span></div>
+      <p class="footer-about">Patna's trusted electrical appliances store since 1998. Genuine products from 25+ top brands, honest prices, and reliable service — that is our promise.</p>
+      <div class="footer-social">
+        <div class="soc-btn">📘</div>
+        <div class="soc-btn">📸</div>
+        <div class="soc-btn">▶️</div>
+        <div class="soc-btn">🐦</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul class="footer-links">
+        <li><a href="#">Air Conditioners</a></li>
+        <li><a href="#">Refrigerators</a></li>
+        <li><a href="#">Smart TVs</a></li>
+        <li><a href="#">Washing Machines</a></li>
+        <li><a href="#">Geysers</a></li>
+        <li><a href="#">Small Appliances</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul class="footer-links">
+        <li><a href="#">Track My Order</a></li>
+        <li><a href="#">EMI & Financing</a></li>
+        <li><a href="#">Exchange Offer</a></li>
+        <li><a href="#">Service Request</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Visit Us</h5>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span class="contact-text">Shop No. 7 & 8, Maurya Lok Complex,<br>Dak Bungalow Road,<br>Patna – 800001, Bihar</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <span class="contact-text">+91 98765 43210<br>+91 61222 34567</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-text">info@harshenterprises.in</span>
+      </div>
+      <div class="hours-badge">Open: Mon – Sat, 10 AM – 8 PM</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Harsh Enterprises, Patna, Bihar. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
