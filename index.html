@@ -3,474 +3,891 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harsh Enterprises – Electrical Appliances | Patna, Bihar</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Aditya Sharma Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-:root {
-  --red: #c0392b;
-  --red-dark: #962d22;
-  --red-light: #fdf2f1;
-  --ink: #1a1a1a;
-  --ink2: #3d3d3d;
-  --muted: #7a7a7a;
-  --border: #e8e8e8;
-  --bg: #fafafa;
-  --white: #ffffff;
-}
-body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100%; }
+  body { font-family: 'Raleway', sans-serif; font-weight: 300; background: #f4f0ea; color: #1a1a1a; }
 
-/* TOP BAR */
-.topbar { background: var(--ink); padding: 9px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.6); }
-.topbar-left { display: flex; gap: 24px; }
-.topbar-right { display: flex; gap: 20px; }
-.topbar-right a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-.topbar-right a:hover { color: #fff; }
+  /* ── SPLASH ── */
+  #splash {
+    position: fixed; inset: 0; z-index: 9999;
+    transition: opacity 0.6s ease;
+  }
+  .splash-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%; height: 100vh;
+    gap: 0;
+  }
+  .splash-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .splash-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.35);
+  }
+  .splash-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    width: 260px;
+    padding: 40px 30px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .splash-nv {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 52px;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .splash-divider {
+    width: 60px; height: 1px;
+    background: #fff; opacity: 0.5;
+    margin: 8px auto 10px;
+  }
+  .splash-name {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .splash-enter {
+    margin-top: 22px;
+    display: inline-block;
+    padding: 10px 36px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .splash-enter:hover { background: #fff; color: #000; }
 
-/* HEADER */
-header { background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 5%; gap: 24px; }
-.logo-name { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--red); }
-.logo-tag { font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; font-weight: 400; }
-.header-search { flex: 1; max-width: 480px; display: flex; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
-.header-search:focus-within { border-color: var(--red); }
-.header-search input { flex: 1; padding: 10px 16px; border: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 0.92rem; color: var(--ink); background: transparent; }
-.header-search input::placeholder { color: var(--muted); }
-.search-btn { background: var(--red); border: none; padding: 0 20px; color: #fff; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
-.search-btn:hover { background: var(--red-dark); }
-.header-actions { display: flex; gap: 22px; }
-.action-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--ink2); font-size: 0.7rem; letter-spacing: 0.4px; gap: 3px; text-decoration: none; transition: color 0.2s; }
-.action-item:hover { color: var(--red); }
-.action-icon { font-size: 1.25rem; }
+  /* ── PAGES ── */
+  .page { display: none; opacity: 0; transition: opacity 0.6s ease; }
+  .page.active { display: block; opacity: 1; }
 
-/* NAV */
-nav { background: var(--red); }
-.nav-inner { display: flex; padding: 0 5%; overflow-x: auto; }
-.nav-item { padding: 13px 20px; color: rgba(255,255,255,0.85); font-size: 0.87rem; font-weight: 500; cursor: pointer; text-decoration: none; display: block; border-bottom: 3px solid transparent; margin-bottom: -3px; transition: background 0.15s, color 0.15s, border-color 0.15s; white-space: nowrap; }
-.nav-item:hover, .nav-item.active { background: rgba(0,0,0,0.15); color: #fff; border-bottom-color: #fff; }
-.nav-offers { margin-left: auto; color: #ffd1ca !important; font-weight: 700 !important; }
+  /* ── HEADER ── */
+  .site-header {
+    text-align: center;
+    padding: 30px 20px 0;
+    background: #f4f0ea;
+  }
+  .logo-nv {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 42px;
+    color: #1a1a1a;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .logo-flourish {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #888;
+    display: block;
+    margin: 2px 0 4px;
+    letter-spacing: 0.1em;
+  }
+  .logo-name {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+  nav {
+    margin-top: 4px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #ddd;
+  }
+  nav a {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-decoration: none;
+    margin: 0 14px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  nav a:hover { border-bottom-color: #1a1a1a; }
 
-/* HERO */
-.hero { background: linear-gradient(108deg, #160808 0%, #2a0e0e 50%, #1c1010 100%); min-height: 480px; display: flex; align-items: center; position: relative; overflow: hidden; padding: 70px 5%; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 50%, rgba(192,57,43,0.22) 0%, transparent 58%); }
-.hero-grid-pattern { position: absolute; inset: 0; opacity: 0.025; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 1px, transparent 0, transparent 50%); background-size: 18px 18px; }
-.hero-left { position: relative; z-index: 2; max-width: 560px; animation: heroIn 0.9s cubic-bezier(0.22,1,0.36,1) both; }
-.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.45); color: #f1a99a; font-size: 0.74rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; margin-bottom: 22px; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); color: #fff; line-height: 1.12; font-weight: 700; margin-bottom: 18px; }
-.hero h1 em { color: #f4a89a; font-style: italic; }
-.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 34px; font-weight: 300; max-width: 440px; }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-main { background: var(--red); color: #fff; border: none; padding: 13px 30px; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
-.btn-main:hover { background: var(--red-dark); transform: translateY(-1px); }
-.btn-outline { background: transparent; color: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.22); padding: 13px 26px; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
-.btn-outline:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
-.hero-stats { display: flex; gap: 36px; margin-top: 44px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: #f4a89a; line-height: 1; }
-.stat-label { font-size: 0.73rem; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; margin-top: 4px; }
-.hero-cards { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 2; }
-.hero-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 16px 22px; min-width: 195px; backdrop-filter: blur(8px); animation: slideLeft 0.9s cubic-bezier(0.22,1,0.36,1) both; }
-.hero-card:nth-child(2) { animation-delay: 0.1s; }
-.hero-card:nth-child(3) { animation-delay: 0.2s; }
-.hc-icon { font-size: 1.4rem; margin-bottom: 7px; }
-.hc-label { font-size: 0.76rem; color: rgba(255,255,255,0.45); }
-.hc-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #f4a89a; margin-top: 2px; }
+  /* ── HERO SLIDER ── */
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    margin-top: 0;
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .slider-btn {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    width: 44px; height: 60px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Raleway', sans-serif; font-weight: 200;
+    transition: background 0.2s;
+  }
+  .slider-btn:hover { background: rgba(0,0,0,0.5); }
+  .slider-btn.prev { left: 0; }
+  .slider-btn.next { right: 0; }
 
-/* MARQUEE */
-.marquee-bar { background: var(--white); border-bottom: 1px solid var(--border); overflow: hidden; padding: 11px 0; }
-.marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
-.m-item { padding: 0 34px; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-right: 1px solid var(--border); white-space: nowrap; transition: color 0.2s; }
-.m-item:hover { color: var(--red); }
+  /* ── QUOTE ── */
+  .quote-section {
+    text-align: center;
+    padding: 60px 20px 0;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .quote-text::before { content: '\201C'; font-size: 36px; vertical-align: -6px; margin-right: 2px; }
+  .quote-text::after  { content: '\201D'; font-size: 36px; vertical-align: -6px; margin-left: 2px; }
+  .quote-desc {
+    margin-top: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: #888;
+    max-width: 480px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.8;
+  }
+  .quote-tag {
+    display: block;
+    margin-top: 18px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
 
-/* SECTIONS */
-.section { padding: 72px 5%; }
-.section-white { background: var(--white); }
-.eyebrow { font-size: 0.71rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-.eyebrow::after { content: ''; display: block; height: 1.5px; width: 28px; background: var(--red); opacity: 0.35; }
-.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; color: var(--ink); line-height: 1.2; }
-.section-sub { font-size: 0.9rem; color: var(--muted); margin-top: 8px; font-weight: 400; }
-.row-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; }
-.view-all { font-size: 0.83rem; color: var(--red); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: border-color 0.2s; white-space: nowrap; }
-.view-all:hover { border-bottom-color: var(--red); }
+  /* ── MOSAIC GRID ── */
+  .mosaic-wrap {
+    position: relative;
+    margin-top: 60px;
+    padding: 0 40px;
+  }
+  .mosaic-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 180px;
+    gap: 4px;
+  }
+  .mosaic-cell {
+    overflow: hidden;
+    position: relative;
+  }
+  .mosaic-cell.tall { grid-row: span 2; }
+  .mosaic-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .mosaic-cell:hover img { transform: scale(1.05); }
+  .mosaic-cell.gray img { filter: grayscale(100%); }
+  .mosaic-btn {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    background: rgba(244,240,234,0.85);
+    border: none;
+    color: #1a1a1a;
+    font-size: 26px;
+    width: 36px; height: 60px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Raleway', sans-serif; font-weight: 200;
+  }
+  .mosaic-btn.prev { left: 4px; }
+  .mosaic-btn.next { right: 4px; }
 
-/* CATEGORIES */
-.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 14px; }
-.cat-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 8px; padding: 28px 16px 22px; text-align: center; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.22s; text-decoration: none; display: block; }
-.cat-card:hover { border-color: var(--red); box-shadow: 0 6px 22px rgba(192,57,43,0.1); transform: translateY(-3px); }
-.cat-emoji { font-size: 2.4rem; margin-bottom: 12px; display: block; }
-.cat-name { font-size: 0.87rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.cat-count { font-size: 0.73rem; color: var(--muted); }
+  /* ── REAL LOVE STORIES ── */
+  .stories-section {
+    margin-top: 70px;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .section-sub {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: #888;
+    font-style: italic;
+    margin-top: 8px;
+    max-width: 460px;
+    margin-left: auto; margin-right: auto;
+  }
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 0 10px;
+  }
+  .story-thumb {
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .story-thumb img {
+    width: 100%; aspect-ratio: 1/1;
+    object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .story-thumb:hover img { transform: scale(1.05); }
+  .story-thumb-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-top: 8px;
+    color: #1a1a1a;
+  }
+  .story-thumb-loc {
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 3px;
+  }
 
-/* OFFERS */
-.offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 20px; }
-.offer-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s; }
-.offer-card:hover { border-color: rgba(192,57,43,0.25); box-shadow: 0 14px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
-.offer-img-wrap { background: linear-gradient(135deg, #f9eeee 0%, #fce8e6 100%); height: 186px; display: flex; align-items: center; justify-content: center; position: relative; font-size: 5rem; }
-.badge-sale { position: absolute; top: 14px; left: 14px; background: var(--red); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; }
-.badge-tag { position: absolute; top: 14px; right: 14px; background: #1a6b3a; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 3px; }
-.offer-body { padding: 20px; }
-.offer-brand { font-size: 0.71rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.offer-name { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
-.offer-spec { font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
-.divider { height: 1px; background: var(--border); margin-bottom: 14px; }
-.price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
-.price-new { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); }
-.price-old { font-size: 0.86rem; color: var(--muted); text-decoration: line-through; }
-.price-save { font-size: 0.74rem; color: #16a34a; font-weight: 600; background: #f0fdf4; padding: 2px 8px; border-radius: 20px; }
-.emi-note { font-size: 0.75rem; color: var(--muted); margin-bottom: 14px; }
-.btn-buy { width: 100%; padding: 12px; background: var(--red); color: #fff; border: none; border-radius: 5px; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; letter-spacing: 0.3px; }
-.btn-buy:hover { background: var(--red-dark); }
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #888;
+    text-transform: uppercase;
+  }
 
-/* PROMO STRIP */
-.promo-strip { background: linear-gradient(90deg, #160808 0%, #2a0e0e 100%); padding: 44px 5%; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.promo-strip h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.8rem); color: #fff; margin-bottom: 6px; }
-.promo-strip p { font-size: 0.88rem; color: rgba(255,255,255,0.48); max-width: 500px; line-height: 1.6; }
+  /* ── STORIES LISTING PAGE ── */
+  .page-title {
+    text-align: center;
+    padding: 30px 20px 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .stories-list {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  .story-card {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .story-card:last-child { border-bottom: none; }
+  .story-card-img {
+    width: 100%; height: 300px;
+    position: relative; overflow: hidden;
+  }
+  .story-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .story-card-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+  }
+  .story-card-overlay-name {
+    position: absolute;
+    bottom: 20px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 34px;
+    color: #fff;
+    z-index: 2;
+    padding: 0 20px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  }
+  .story-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-top: 14px;
+  }
+  .story-card-date {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .story-card-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 8px;
+  }
+  .story-card-read {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: #1a1a1a;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .story-card-read:hover { border-bottom-color: #1a1a1a; }
+  .story-card-likes {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    color: #aaa;
+  }
 
-/* WHY US */
-.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px, 1fr)); gap: 2px; border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--border); }
-.why-card { background: var(--white); padding: 36px 26px; transition: background 0.2s; }
-.why-card:hover { background: var(--red-light); }
-.why-icon-wrap { width: 48px; height: 48px; border-radius: 8px; background: var(--red-light); border: 1.5px solid rgba(192,57,43,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 18px; }
-.why-title { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-.why-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
+  /* ── STORY DETAIL PAGE ── */
+  .story-detail-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+  .story-detail-wrap + .story-detail-wrap {
+    border-top: 1px solid #ddd;
+    margin-top: 0;
+    padding-top: 50px;
+  }
+  .detail-couple {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #1a1a1a;
+    text-transform: uppercase;
+  }
+  .detail-date {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-top: 6px;
+  }
+  .detail-divider {
+    width: 60px; height: 1px;
+    background: #ddd;
+    margin: 18px auto;
+  }
+  .detail-body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 2;
+    color: #333;
+  }
+  .detail-body p { margin-bottom: 24px; }
+  .detail-slideshow-wrap {
+    position: relative;
+    margin: 30px 0 20px;
+  }
+  .detail-slideshow {
+    display: flex; gap: 6px;
+    overflow: hidden;
+  }
+  .detail-slide-set {
+    display: none;
+    width: 100%; flex-shrink: 0;
+    gap: 6px;
+  }
+  .detail-slide-set.active { display: flex; }
+  .detail-slide-set img {
+    width: calc(33.33% - 4px); height: 260px;
+    object-fit: cover; display: block;
+  }
+  .detail-arrow {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 28px;
+    color: #1a1a1a;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    padding: 10px;
+  }
+  .detail-arrow:hover { opacity: 1; }
+  .detail-arrow.prev { left: -36px; }
+  .detail-arrow.next { right: -36px; }
+  .detail-actions {
+    display: flex; gap: 12px;
+    margin-top: 18px;
+  }
+  .detail-btn {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .detail-btn:hover { background: #1a1a1a; color: #fff; }
+  .detail-likes {
+    margin-left: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    color: #aaa;
+    align-self: center;
+  }
 
-/* TESTIMONIALS */
-.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 20px; }
-.test-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 26px; transition: box-shadow 0.22s, border-color 0.22s; }
-.test-card:hover { border-color: rgba(192,57,43,0.2); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-.test-stars { color: #d97706; font-size: 0.92rem; letter-spacing: 2px; margin-bottom: 12px; }
-.test-quote { font-size: 2rem; color: var(--red); opacity: 0.18; font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: -4px; }
-.test-text { font-size: 0.9rem; color: var(--ink2); line-height: 1.75; margin-bottom: 20px; }
-.test-author-row { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
-.test-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--red-dark), #e74c3c); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.93rem; flex-shrink: 0; }
-.test-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
-.test-city { font-size: 0.74rem; color: var(--muted); }
-.verified { color: #16a34a; font-weight: 600; }
-
-/* FOOTER */
-footer { background: #111; color: rgba(255,255,255,0.55); font-size: 0.87rem; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 48px; padding: 64px 5% 48px; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 14px; }
-.footer-logo span { color: var(--red); }
-.footer-about { font-size: 0.84rem; line-height: 1.75; color: rgba(255,255,255,0.4); margin-bottom: 22px; }
-.footer-social { display: flex; gap: 10px; }
-.soc-btn { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.92rem; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
-.soc-btn:hover { background: var(--red); border-color: var(--red); }
-.footer-col h5 { color: rgba(255,255,255,0.8); font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 10px; }
-.footer-links a { color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-.footer-links a:hover { color: #fff; }
-.contact-item { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
-.contact-icon { flex-shrink: 0; margin-top: 1px; opacity: 0.65; }
-.contact-text { color: rgba(255,255,255,0.42); font-size: 0.84rem; line-height: 1.65; }
-.hours-badge { display: inline-block; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); color: #f1a99a; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; padding: 5px 12px; border-radius: 3px; margin-top: 8px; }
-.footer-bottom { padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: rgba(255,255,255,0.22); flex-wrap: wrap; gap: 10px; }
-.footer-bottom a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
-.footer-bottom a:hover { color: rgba(255,255,255,0.6); }
-.footer-bottom-links { display: flex; gap: 20px; }
-
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.d1 { transition-delay: 0.08s; }
-.d2 { transition-delay: 0.16s; }
-.d3 { transition-delay: 0.24s; }
-
-/* KEYFRAMES */
-@keyframes heroIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideLeft { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* RESPONSIVE */
-@media (max-width: 960px) { .hero-cards { display: none; } .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; } .topbar { display: none; } }
-@media (max-width: 600px) { .header-inner { flex-wrap: wrap; } .header-search { order: 3; flex: 100%; max-width: 100%; } .footer-top { grid-template-columns: 1fr; } }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .splash-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .splash-grid img:nth-child(n+13) { display: none; }
+    .mosaic-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+    .mosaic-cell.tall { grid-row: span 2; }
+    .stories-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-slider { height: 280px; }
+    nav a { margin: 0 8px; font-size: 10px; }
+    .detail-arrow.prev { left: -10px; }
+    .detail-arrow.next { right: -10px; }
+    .detail-slide-set img { height: 180px; }
+  }
+  @media (max-width: 480px) {
+    .stories-grid { grid-template-columns: 1fr; }
+    .mosaic-grid { grid-template-columns: repeat(2, 1fr); }
+    .section-title { font-size: 22px; }
+    .detail-couple { font-size: 26px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <span>📍 Patna, Bihar — 800001</span>
-    <span>📞 +91 98765 43210</span>
-    <span>🕐 Mon–Sat: 10am – 8pm</span>
+<!-- SPLASH PAGE -->
+<div id="splash">
+  <div class="splash-grid">
+    <img src="https://picsum.photos/400/300?random=1"  alt="">
+    <img src="https://picsum.photos/400/300?random=2"  alt="">
+    <img src="https://picsum.photos/400/300?random=3"  alt="">
+    <img src="https://picsum.photos/400/300?random=4"  alt="">
+    <img src="https://picsum.photos/400/300?random=5"  alt="">
+    <img src="https://picsum.photos/400/300?random=6"  alt="">
+    <img src="https://picsum.photos/400/300?random=7"  alt="">
+    <img src="https://picsum.photos/400/300?random=8"  alt="">
+    <img src="https://picsum.photos/400/300?random=9"  alt="">
+    <img src="https://picsum.photos/400/300?random=10" alt="">
+    <img src="https://picsum.photos/400/300?random=11" alt="">
+    <img src="https://picsum.photos/400/300?random=12" alt="">
+    <img src="https://picsum.photos/400/300?random=13" alt="">
+    <img src="https://picsum.photos/400/300?random=14" alt="">
+    <img src="https://picsum.photos/400/300?random=15" alt="">
   </div>
-  <div class="topbar-right">
-    <a href="#">Track Order</a>
-    <a href="#">EMI Options</a>
-    <a href="#">Service Centre</a>
-  </div>
-</div>
-
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <div>
-      <div class="logo-name">Harsh Enterprises</div>
-      <div class="logo-tag">Electrical Appliances — Est. 1998</div>
-    </div>
-    <div class="header-search">
-      <input type="text" placeholder="Search ACs, Refrigerators, Smart TVs…">
-      <button class="search-btn">🔍</button>
-    </div>
-    <div class="header-actions">
-      <a href="#" class="action-item"><span class="action-icon">💛</span>Wishlist</a>
-      <a href="#" class="action-item"><span class="action-icon">🛒</span>Cart</a>
-      <a href="#" class="action-item"><span class="action-icon">👤</span>Login</a>
-    </div>
-  </div>
-</header>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a class="nav-item active" href="#categories">All Products</a>
-    <a class="nav-item" href="#categories">Air Conditioners</a>
-    <a class="nav-item" href="#categories">Refrigerators</a>
-    <a class="nav-item" href="#categories">Washing Machines</a>
-    <a class="nav-item" href="#categories">Smart TVs</a>
-    <a class="nav-item" href="#categories">Geysers</a>
-    <a class="nav-item" href="#categories">Small Appliances</a>
-    <a class="nav-item nav-offers" href="#offers">🔥 Today's Deals</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid-pattern"></div>
-  <div class="hero-left">
-    <div class="hero-eyebrow">⚡ Patna's Most Trusted Store</div>
-    <h1>Quality Appliances,<br><em>Fair Price.</em><br>Every Time.</h1>
-    <p class="hero-sub">From top-rated ACs to intelligent smart TVs — we carry 25+ leading brands with genuine warranty and reliable after-sales service.</p>
-    <div class="hero-btns">
-      <a href="#offers" class="btn-main">Shop Current Offers</a>
-      <a href="#categories" class="btn-outline">Browse All Products</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">50,000+</div><div class="stat-label">Customers Served</div></div>
-      <div><div class="stat-num">25+</div><div class="stat-label">Top Brands</div></div>
-      <div><div class="stat-num">26 Yrs</div><div class="stat-label">In Business</div></div>
-    </div>
-  </div>
-  <div class="hero-cards">
-    <div class="hero-card"><div class="hc-icon">❄️</div><div class="hc-label">AC Season Offer</div><div class="hc-val">Up to 35% Off</div></div>
-    <div class="hero-card"><div class="hc-icon">🚚</div><div class="hc-label">Delivery in Patna</div><div class="hc-val">Free of Charge</div></div>
-    <div class="hero-card"><div class="hc-icon">💳</div><div class="hc-label">Easy EMI</div><div class="hc-val">0% for 12 months</div></div>
-  </div>
-</section>
-
-<!-- BRAND MARQUEE -->
-<div class="marquee-bar">
-  <div class="marquee-track">
-    <div class="m-item">Samsung</div><div class="m-item">LG</div><div class="m-item">Voltas</div>
-    <div class="m-item">Daikin</div><div class="m-item">Whirlpool</div><div class="m-item">Bosch</div>
-    <div class="m-item">Haier</div><div class="m-item">Sony</div><div class="m-item">Panasonic</div>
-    <div class="m-item">Godrej</div><div class="m-item">Blue Star</div><div class="m-item">Bajaj</div>
-    <!-- duplicate for seamless loop -->
-    <div class="m-item">Samsung</div><div class="m-item">LG</div><div class="m-item">Voltas</div>
-    <div class="m-item">Daikin</div><div class="m-item">Whirlpool</div><div class="m-item">Bosch</div>
-    <div class="m-item">Haier</div><div class="m-item">Sony</div><div class="m-item">Panasonic</div>
-    <div class="m-item">Godrej</div><div class="m-item">Blue Star</div><div class="m-item">Bajaj</div>
+  <div class="splash-overlay"></div>
+  <div class="splash-center">
+    <div class="splash-nv">𝒜𝓈</div>
+    <div class="splash-divider"></div>
+    <div class="splash-name">Aditya Sharma</div>
+    <button class="splash-enter" onclick="enterSite()">Enter</button>
   </div>
 </div>
 
-<!-- CATEGORIES -->
-<section class="section section-white" id="categories">
-  <div class="row-head reveal">
-    <div><div class="eyebrow">Shop by Category</div><h2 class="section-title">What are you looking for?</h2></div>
-    <a href="#" class="view-all">View All →</a>
+<!-- HOME PAGE -->
+<div id="page-home" class="page">
+  <div class="site-header">
+    <div class="logo-nv">𝒜𝓈</div>
+    <span class="logo-flourish">~</span>
+    <span class="logo-name">Aditya Sharma</span>
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('home')">Galleries</a>
+      <a onclick="showPage('stories')">Stories</a>
+      <a onclick="showPage('home')">Testimonials</a>
+      <a onclick="showPage('home')">About</a>
+      <a onclick="showPage('home')">Enquire</a>
+    </nav>
   </div>
-  <div class="cat-grid">
-    <a href="#" class="cat-card reveal"><span class="cat-emoji">❄️</span><div class="cat-name">Air Conditioners</div><div class="cat-count">48 products</div></a>
-    <a href="#" class="cat-card reveal d1"><span class="cat-emoji">🧊</span><div class="cat-name">Refrigerators</div><div class="cat-count">62 products</div></a>
-    <a href="#" class="cat-card reveal d2"><span class="cat-emoji">📺</span><div class="cat-name">Smart TVs</div><div class="cat-count">54 products</div></a>
-    <a href="#" class="cat-card reveal d3"><span class="cat-emoji">🫧</span><div class="cat-name">Washing Machines</div><div class="cat-count">38 products</div></a>
-    <a href="#" class="cat-card reveal"><span class="cat-emoji">🔥</span><div class="cat-name">Microwaves</div><div class="cat-count">24 products</div></a>
-    <a href="#" class="cat-card reveal d1"><span class="cat-emoji">🚿</span><div class="cat-name">Geysers</div><div class="cat-count">19 products</div></a>
-    <a href="#" class="cat-card reveal d2"><span class="cat-emoji">💨</span><div class="cat-name">Fans & Coolers</div><div class="cat-count">41 products</div></a>
-    <a href="#" class="cat-card reveal d3"><span class="cat-emoji">🔌</span><div class="cat-name">Small Appliances</div><div class="cat-count">85 products</div></a>
-  </div>
-</section>
 
-<!-- OFFERS -->
-<section class="section" id="offers">
-  <div class="row-head reveal">
-    <div>
-      <div class="eyebrow">Limited Time</div>
-      <h2 class="section-title">Today's Best Deals</h2>
-      <p class="section-sub">Prices updated daily — stock is limited.</p>
-    </div>
-    <a href="#" class="view-all">All Offers →</a>
+  <!-- Hero Slider -->
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide active"><img src="https://picsum.photos/1400/480?random=20" alt=""></div>
+    <div class="hero-slide"><img src="https://picsum.photos/1400/480?random=21" alt=""></div>
+    <div class="hero-slide"><img src="https://picsum.photos/1400/480?random=22" alt=""></div>
+    <div class="hero-slide"><img src="https://picsum.photos/1400/480?random=23" alt=""></div>
+    <div class="hero-slide"><img src="https://picsum.photos/1400/480?random=24" alt=""></div>
+    <button class="slider-btn prev" onclick="heroSlide(-1)">&#8249;</button>
+    <button class="slider-btn next" onclick="heroSlide(1)">&#8250;</button>
   </div>
-  <div class="offers-grid">
-    <div class="offer-card reveal">
-      <div class="offer-img-wrap"><span>❄️</span><div class="badge-sale">35% OFF</div><div class="badge-tag">BEE 5★</div></div>
-      <div class="offer-body">
-        <div class="offer-brand">Voltas</div>
-        <div class="offer-name">1.5 Ton 5-Star Inverter Split AC</div>
-        <div class="offer-spec">Auto Clean · Wi-Fi Ready · Dual Filtration</div>
-        <div class="divider"></div>
-        <div class="price-row"><span class="price-new">₹32,999</span><span class="price-old">₹50,990</span><span class="price-save">Save ₹18K</span></div>
-        <div class="emi-note">or ₹2,750/mo at 0% EMI for 12 months</div>
-        <button class="btn-buy">Add to Cart</button>
-      </div>
-    </div>
-    <div class="offer-card reveal d1">
-      <div class="offer-img-wrap"><span>📺</span><div class="badge-sale">28% OFF</div></div>
-      <div class="offer-body">
-        <div class="offer-brand">Samsung</div>
-        <div class="offer-name">55" 4K Crystal UHD Smart TV</div>
-        <div class="offer-spec">Alexa Built-in · 4K Upscaling · Slim Bezel</div>
-        <div class="divider"></div>
-        <div class="price-row"><span class="price-new">₹43,990</span><span class="price-old">₹60,990</span><span class="price-save">Save ₹17K</span></div>
-        <div class="emi-note">or ₹3,666/mo at 0% EMI for 12 months</div>
-        <button class="btn-buy">Add to Cart</button>
-      </div>
-    </div>
-    <div class="offer-card reveal d2">
-      <div class="offer-img-wrap"><span>🧊</span><div class="badge-sale">22% OFF</div><div class="badge-tag">BESTSELLER</div></div>
-      <div class="offer-body">
-        <div class="offer-brand">LG</div>
-        <div class="offer-name">260L Frost Free Double Door Refrigerator</div>
-        <div class="offer-spec">Smart Inverter · Door Cooling+ · 10yr Warranty</div>
-        <div class="divider"></div>
-        <div class="price-row"><span class="price-new">₹25,990</span><span class="price-old">₹33,490</span><span class="price-save">Save ₹7.5K</span></div>
-        <div class="emi-note">or ₹2,166/mo at 0% EMI for 12 months</div>
-        <button class="btn-buy">Add to Cart</button>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PROMO STRIP -->
-<div class="promo-strip reveal">
-  <div>
-    <h3>Exchange your old appliance — Get up to ₹8,000 off</h3>
-    <p>Bring in any working or non-working appliance and receive an instant exchange discount on your new purchase. Valid in-store at Patna.</p>
+  <!-- Quote -->
+  <div class="quote-section">
+    <div class="quote-text">You Feel.. I Focus.. We Frame</div>
+    <p class="quote-desc">A wedding is a celebration coupled with the divine use of love inclusive of various events with exotic venues, food, guests, dresses, jewellery and so on.<br>What if could never be recreated?</p>
+    <p class="quote-desc" style="margin-top:10px; font-style:italic;">A chronology of a couple's journey where they vow together to be <em>One</em>.</p>
+    <span class="quote-tag">We are creating fiction out of reality.</span>
   </div>
-  <a href="#" class="btn-main" style="flex-shrink:0;">Know More →</a>
+
+  <!-- Mosaic Grid -->
+  <div class="mosaic-wrap">
+    <button class="mosaic-btn prev" onclick="mosaicSlide(-1)">&#8249;</button>
+    <div class="mosaic-grid" id="mosaicGrid">
+      <!-- Set 0 (visible) -->
+      <div class="mosaic-cell gray" data-set="0"><img src="https://picsum.photos/400/300?random=30" alt=""></div>
+      <div class="mosaic-cell"      data-set="0"><img src="https://picsum.photos/400/300?random=31" alt=""></div>
+      <div class="mosaic-cell tall" data-set="0"><img src="https://picsum.photos/400/600?random=32" alt=""></div>
+      <div class="mosaic-cell gray" data-set="0"><img src="https://picsum.photos/400/300?random=33" alt=""></div>
+      <div class="mosaic-cell"      data-set="0"><img src="https://picsum.photos/400/300?random=34" alt=""></div>
+      <div class="mosaic-cell"      data-set="0"><img src="https://picsum.photos/400/300?random=35" alt=""></div>
+      <div class="mosaic-cell gray" data-set="0"><img src="https://picsum.photos/400/300?random=36" alt=""></div>
+      <!-- row 2 col 3 already spanned -->
+      <div class="mosaic-cell"      data-set="0"><img src="https://picsum.photos/400/300?random=37" alt=""></div>
+      <div class="mosaic-cell gray" data-set="0"><img src="https://picsum.photos/400/300?random=38" alt=""></div>
+      <!-- Set 1 -->
+      <div class="mosaic-cell gray" data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=40" alt=""></div>
+      <div class="mosaic-cell"      data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=41" alt=""></div>
+      <div class="mosaic-cell tall" data-set="1" style="display:none"><img src="https://picsum.photos/400/600?random=42" alt=""></div>
+      <div class="mosaic-cell"      data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=43" alt=""></div>
+      <div class="mosaic-cell gray" data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=44" alt=""></div>
+      <div class="mosaic-cell"      data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=45" alt=""></div>
+      <div class="mosaic-cell gray" data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=46" alt=""></div>
+      <div class="mosaic-cell"      data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=47" alt=""></div>
+      <div class="mosaic-cell"      data-set="1" style="display:none"><img src="https://picsum.photos/400/300?random=48" alt=""></div>
+      <!-- Set 2 -->
+      <div class="mosaic-cell"      data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=50" alt=""></div>
+      <div class="mosaic-cell gray" data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=51" alt=""></div>
+      <div class="mosaic-cell tall" data-set="2" style="display:none"><img src="https://picsum.photos/400/600?random=52" alt=""></div>
+      <div class="mosaic-cell gray" data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=53" alt=""></div>
+      <div class="mosaic-cell"      data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=54" alt=""></div>
+      <div class="mosaic-cell gray" data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=55" alt=""></div>
+      <div class="mosaic-cell"      data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=56" alt=""></div>
+      <div class="mosaic-cell"      data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=57" alt=""></div>
+      <div class="mosaic-cell gray" data-set="2" style="display:none"><img src="https://picsum.photos/400/300?random=58" alt=""></div>
+    </div>
+    <button class="mosaic-btn next" onclick="mosaicSlide(1)">&#8250;</button>
+  </div>
+
+  <!-- Real Love Stories -->
+  <div class="stories-section">
+    <div class="section-title">Real Love Stories</div>
+    <p class="section-sub">Like a river flows surely to the sea, so it goes some things are meant to be.</p>
+    <div class="stories-grid">
+      <div class="story-thumb" onclick="showPage('detail')">
+        <img src="https://picsum.photos/400/400?random=60" alt="">
+        <div class="story-thumb-name">Priya & Nihal</div>
+        <div class="story-thumb-loc">Hyderabad // </div>
+      </div>
+      <div class="story-thumb" onclick="showPage('detail')">
+        <img src="https://picsum.photos/400/400?random=61" alt="">
+        <div class="story-thumb-name">Aabha & Ditty</div>
+        <div class="story-thumb-loc">Mumbai // </div>
+      </div>
+      <div class="story-thumb" onclick="showPage('detail')">
+        <img src="https://picsum.photos/400/400?random=62" alt="">
+        <div class="story-thumb-name">Pia & Vik</div>
+        <div class="story-thumb-loc">Dubai // </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© AdityaSharma</footer>
 </div>
 
-<!-- WHY US -->
-<section class="section section-white" id="why">
-  <div style="margin-bottom:44px;" class="reveal">
-    <div class="eyebrow">Why Harsh Enterprises</div>
-    <h2 class="section-title">Patna's Choice Since 1998</h2>
-    <p class="section-sub">26 saal ki mehnat, ek hi wada — genuine product, best price, honest service.</p>
+<!-- STORIES LISTING PAGE -->
+<div id="page-stories" class="page">
+  <div class="site-header">
+    <div class="logo-nv">𝒜𝓈</div>
+    <span class="logo-flourish">~</span>
+    <span class="logo-name">Aditya Sharma</span>
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('home')">Galleries</a>
+      <a onclick="showPage('stories')">Stories</a>
+      <a onclick="showPage('home')">Testimonials</a>
+      <a onclick="showPage('home')">About</a>
+      <a onclick="showPage('home')">Enquire</a>
+    </nav>
   </div>
-  <div class="why-grid">
-    <div class="why-card reveal"><div class="why-icon-wrap">🏆</div><div class="why-title">100% Genuine Products</div><div class="why-desc">Every product sourced directly from authorised brand distributors. No grey market, no duplicates — manufacturer warranty on everything.</div></div>
-    <div class="why-card reveal d1"><div class="why-icon-wrap">💰</div><div class="why-title">Best Price Guarantee</div><div class="why-desc">Found it cheaper elsewhere in Patna? Show us the bill and we will match or beat it — no questions asked.</div></div>
-    <div class="why-card reveal d2"><div class="why-icon-wrap">🚚</div><div class="why-title">Free Home Delivery</div><div class="why-desc">Free delivery and professional installation across Patna city. Same-day delivery available on select items.</div></div>
-    <div class="why-card reveal d3"><div class="why-icon-wrap">🛡️</div><div class="why-title">Extended Warranty</div><div class="why-desc">We offer 1 year additional free service warranty on top of the manufacturer's warranty — at no extra cost.</div></div>
-  </div>
-</section>
+  <div class="page-title">Stories</div>
 
-<!-- TESTIMONIALS -->
-<section class="section" id="testimonials">
-  <div class="row-head reveal">
-    <div><div class="eyebrow">Customer Reviews</div><h2 class="section-title">What Patna Says About Us</h2></div>
-    <a href="#" class="view-all">All Reviews →</a>
+  <div class="stories-list">
+    <!-- Card 1 -->
+    <div class="story-card">
+      <div class="story-card-img">
+        <img src="https://picsum.photos/720/300?random=70" alt="">
+        <div class="story-card-overlay-name">Alisha &amp; Rahul</div>
+      </div>
+      <div class="story-card-name">Alisha &amp; Rahul</div>
+      <div class="story-card-date">January 12, 2025</div>
+      <div class="story-card-meta">
+        <span class="story-card-read" onclick="showPage('detail')">Read More →</span>
+        <span class="story-card-likes">♥ 893 likes</span>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="story-card">
+      <div class="story-card-img">
+        <img src="https://picsum.photos/720/300?random=71" alt="">
+        <div class="story-card-overlay-name">Kavya &amp; Karan</div>
+      </div>
+      <div class="story-card-name">Kavya &amp; Karan</div>
+      <div class="story-card-date">June 9, 2025</div>
+      <div class="story-card-date" style="font-style:italic;margin-top:2px;">#KavGetsGroovy</div>
+      <div class="story-card-meta">
+        <span class="story-card-read" onclick="showPage('detail')">Read More →</span>
+        <span class="story-card-likes">♥ 741 likes</span>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="story-card">
+      <div class="story-card-img">
+        <img src="https://picsum.photos/720/300?random=72" alt="">
+        <div class="story-card-overlay-name">Trisha &amp; Nihaal</div>
+      </div>
+      <div class="story-card-name">Trisha &amp; Nihaal</div>
+      <div class="story-card-date">May 20, 2025</div>
+      <p style="font-family:'Raleway',sans-serif;font-size:12px;color:#888;margin-top:6px;line-height:1.7;">It unfolded like a scene straight out of a movie as Nihaal &amp; Trisha took their last place.</p>
+      <div class="story-card-meta">
+        <span class="story-card-read" onclick="showPage('detail')">Read More →</span>
+        <span class="story-card-likes">♥ 612 likes</span>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="story-card">
+      <div class="story-card-img">
+        <img src="https://picsum.photos/720/300?random=73" alt="">
+        <div class="story-card-overlay-name">Sharma &amp; Shanon</div>
+      </div>
+      <div class="story-card-name">Sharma &amp; Shanon</div>
+      <div class="story-card-date">March 5, 2025</div>
+      <div class="story-card-meta">
+        <span class="story-card-read" onclick="showPage('detail')">Read More →</span>
+        <span class="story-card-likes">♥ 529 likes</span>
+      </div>
+    </div>
   </div>
-  <div class="test-grid">
-    <div class="test-card reveal">
-      <div class="test-stars">★★★★★</div>
-      <div class="test-quote">"</div>
-      <p class="test-text">AC liya pichle mahine — delivery same day ho gayi aur installation bhi bilkul free. Staff bahut helpful tha, sahi model suggest kiya budget mein. Price bhi Amazon se better tha.</p>
-      <div class="test-author-row">
-        <div class="test-avatar">R</div>
-        <div><div class="test-name">Rahul Kumar</div><div class="test-city">Rajendra Nagar, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
-      </div>
-    </div>
-    <div class="test-card reveal d1">
-      <div class="test-stars">★★★★★</div>
-      <div class="test-quote">"</div>
-      <p class="test-text">10 saal se yahan se hi le rahe hain. Kabhi koi issue nahi aaya. Jab bhi service ki zarurat hui, inke log aa gaye. Patna mein itna trustworthy store dusra nahi hai.</p>
-      <div class="test-author-row">
-        <div class="test-avatar">S</div>
-        <div><div class="test-name">Sunita Devi</div><div class="test-city">Kankarbagh, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
-      </div>
-    </div>
-    <div class="test-card reveal d2">
-      <div class="test-stars">★★★★☆</div>
-      <div class="test-quote">"</div>
-      <p class="test-text">Washing machine ke liye aaya tha. Exchange offer mein ₹6,000 ka discount mila. Bade bhai ne recommend kiya tha Harsh Enterprises — sach mein bahut achha experience raha.</p>
-      <div class="test-author-row">
-        <div class="test-avatar">A</div>
-        <div><div class="test-name">Abhishek Singh</div><div class="test-city">Boring Road, Patna &nbsp;<span class="verified">✔ Verified</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
-<!-- FOOTER -->
-<footer id="footer">
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">Harsh <span>Enterprises</span></div>
-      <p class="footer-about">Patna's trusted electrical appliances store since 1998. Genuine products from 25+ top brands, honest prices, and reliable service — that is our promise.</p>
-      <div class="footer-social">
-        <div class="soc-btn">📘</div>
-        <div class="soc-btn">📸</div>
-        <div class="soc-btn">▶️</div>
-        <div class="soc-btn">🐦</div>
-      </div>
+<!-- STORY DETAIL PAGE -->
+<div id="page-detail" class="page">
+  <div class="site-header">
+    <div class="logo-nv">𝒜𝓈</div>
+    <span class="logo-flourish">~</span>
+    <span class="logo-name">Aditya Sharma</span>
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('home')">Galleries</a>
+      <a onclick="showPage('stories')">Stories</a>
+      <a onclick="showPage('home')">Testimonials</a>
+      <a onclick="showPage('home')">About</a>
+      <a onclick="showPage('home')">Enquire</a>
+    </nav>
+  </div>
+
+  <!-- Story 1 -->
+  <div class="story-detail-wrap">
+    <div class="detail-couple">Aerin &amp; Rahul</div>
+    <div class="detail-date">March 1, 2025</div>
+    <div class="detail-divider"></div>
+    <div class="detail-body">
+      <p>Worlds collide in a Symphony of Love.<br>Two worlds came together, blending colours in a very only love run.</p>
+      <p>Aerin, with the quiet grace of her Korean heritage and Rahul, carrying the vibrant warmth of Indian traditions, found each other across continents and languages — their story beginning by chance, yet unfolding like destiny. Two lives from opposite ends of the world moving instinctively closer, as if the universe had been gently aligning their paths all along.</p>
+      <p>Fire and silk.<br>Places and portraits.<br>Language is nothing against heartbeats.<br>Vows sung, knees exchanged.<br>Families folded gather in prayer, but as one.</p>
+      <p>As the sun dipped behind Lake Picola, the light turned everything gold — every glance softer, every smile deeper. In those quiet in-between moments you could feel it: this wasn't fusion for spectacle. It was belonging.</p>
+      <p>Two histories. Two languages. Two traditions learning each other's rhythms.<br>And in the end nothing felt divided — only expanded.</p>
+      <p>Because love did what it does best: it collided with cultures and created something entirely new, something beautiful, something entirely their own.</p>
     </div>
-    <div class="footer-col">
-      <h5>Shop</h5>
-      <ul class="footer-links">
-        <li><a href="#">Air Conditioners</a></li>
-        <li><a href="#">Refrigerators</a></li>
-        <li><a href="#">Smart TVs</a></li>
-        <li><a href="#">Washing Machines</a></li>
-        <li><a href="#">Geysers</a></li>
-        <li><a href="#">Small Appliances</a></li>
-      </ul>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <span style="font-family:'Raleway',sans-serif;font-size:11px;color:#888;letter-spacing:0.15em;cursor:pointer;">← Back Comments</span>
+      <span style="font-family:'Raleway',sans-serif;font-size:11px;color:#aaa;">818</span>
     </div>
-    <div class="footer-col">
-      <h5>Support</h5>
-      <ul class="footer-links">
-        <li><a href="#">Track My Order</a></li>
-        <li><a href="#">EMI & Financing</a></li>
-        <li><a href="#">Exchange Offer</a></li>
-        <li><a href="#">Service Request</a></li>
-        <li><a href="#">Return Policy</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
+    <div class="detail-slideshow-wrap">
+      <button class="detail-arrow prev" onclick="detailSlide('ds1', -1)">&#8249;</button>
+      <div class="detail-slideshow" id="ds1">
+        <div class="detail-slide-set active">
+          <img src="https://picsum.photos/300/260?random=80" alt="">
+          <img src="https://picsum.photos/300/260?random=81" alt="">
+          <img src="https://picsum.photos/300/260?random=82" alt="">
+        </div>
+        <div class="detail-slide-set">
+          <img src="https://picsum.photos/300/260?random=83" alt="">
+          <img src="https://picsum.photos/300/260?random=84" alt="">
+          <img src="https://picsum.photos/300/260?random=85" alt="">
+        </div>
+        <div class="detail-slide-set">
+          <img src="https://picsum.photos/300/260?random=86" alt="">
+          <img src="https://picsum.photos/300/260?random=87" alt="">
+          <img src="https://picsum.photos/300/260?random=88" alt="">
+        </div>
+      </div>
+      <button class="detail-arrow next" onclick="detailSlide('ds1', 1)">&#8250;</button>
     </div>
-    <div class="footer-col">
-      <h5>Visit Us</h5>
-      <div class="contact-item">
-        <span class="contact-icon">📍</span>
-        <span class="contact-text">Shop No. 7 & 8, Maurya Lok Complex,<br>Dak Bungalow Road,<br>Patna – 800001, Bihar</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">📞</span>
-        <span class="contact-text">+91 98765 43210<br>+91 61222 34567</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">✉️</span>
-        <span class="contact-text">info@harshenterprises.in</span>
-      </div>
-      <div class="hours-badge">Open: Mon – Sat, 10 AM – 8 PM</div>
+    <div class="detail-actions">
+      <button class="detail-btn">Comment</button>
+      <button class="detail-btn">Share</button>
+      <span class="detail-likes">♥ 83 likes</span>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 Harsh Enterprises, Patna, Bihar. All rights reserved.</span>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
-      <a href="#">Sitemap</a>
+
+  <!-- Story 2 -->
+  <div class="story-detail-wrap">
+    <div class="detail-couple">Mehar &amp; Juan</div>
+    <div class="detail-date">February 28, 2025</div>
+    <div class="detail-divider"></div>
+    <div class="detail-body">
+      <p>A Garden of Two Worlds.<br>This one hit me with a full heart.</p>
+      <p>Mehar and Juan aren't just a couple I photographed, they became friends. The kind that laugh with you between shots, trust you with their silences, and remind you why you do what you do in the first place. Two weeks spent on paper, but watching them together, you'd never know they weren't always side by side. Their love is calm, steady, deeply rooted. Like the trees that surrounded us, like the land we stood on. Every moment felt ordained. Organic. Like it had always been trying to happen.</p>
+      <p>From the way she looked at him through the dance, to the quiet walk they took across the field before the ceremony — it didn't feel like I was documenting a wedding. It felt like I was witnessing a story I already believed in.</p>
+      <p>So here it is.<br>For Mehar &amp; Juan.<br>For love that crosses borders and becomes something much bigger — Home.</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <span style="font-family:'Raleway',sans-serif;font-size:11px;color:#888;letter-spacing:0.15em;cursor:pointer;">← Back Comments</span>
+      <span style="font-family:'Raleway',sans-serif;font-size:11px;color:#aaa;">818</span>
+    </div>
+    <div class="detail-slideshow-wrap">
+      <button class="detail-arrow prev" onclick="detailSlide('ds2', -1)">&#8249;</button>
+      <div class="detail-slideshow" id="ds2">
+        <div class="detail-slide-set active">
+          <img src="https://picsum.photos/300/260?random=90" alt="">
+          <img src="https://picsum.photos/300/260?random=91" alt="">
+          <img src="https://picsum.photos/300/260?random=92" alt="">
+        </div>
+        <div class="detail-slide-set">
+          <img src="https://picsum.photos/300/260?random=93" alt="">
+          <img src="https://picsum.photos/300/260?random=94" alt="">
+          <img src="https://picsum.photos/300/260?random=95" alt="">
+        </div>
+        <div class="detail-slide-set">
+          <img src="https://picsum.photos/300/260?random=96" alt="">
+          <img src="https://picsum.photos/300/260?random=97" alt="">
+          <img src="https://picsum.photos/300/260?random=98" alt="">
+        </div>
+      </div>
+      <button class="detail-arrow next" onclick="detailSlide('ds2', 1)">&#8250;</button>
+    </div>
+    <div class="detail-actions">
+      <button class="detail-btn">Comment</button>
+      <button class="detail-btn">Share</button>
+      <span class="detail-likes">♥ 67 likes</span>
     </div>
   </div>
-</footer>
+</div>
 
 <script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // ── SPLASH ──
+  function enterSite() {
+    const splash = document.getElementById('splash');
+    splash.style.opacity = '0';
+    setTimeout(() => {
+      splash.style.display = 'none';
+      showPage('home');
+    }, 600);
+  }
+
+  // ── PAGE SWITCHING ──
+  function showPage(name) {
+    const pages = { home: 'page-home', stories: 'page-stories', detail: 'page-detail' };
+    const id = pages[name] || 'page-home';
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+      p.style.display = 'none';
+      p.style.opacity = '0';
+    });
+    const target = document.getElementById(id);
+    target.style.display = 'block';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.style.opacity = '1';
+        target.classList.add('active');
+      });
+    });
+    window.scrollTo(0, 0);
+  }
+
+  // ── HERO SLIDER ──
+  let heroIdx = 0;
+  const heroSlides = document.querySelectorAll('#heroSlider .hero-slide');
+  function heroSlide(dir) {
+    heroSlides[heroIdx].classList.remove('active');
+    heroIdx = (heroIdx + dir + heroSlides.length) % heroSlides.length;
+    heroSlides[heroIdx].classList.add('active');
+  }
+  setInterval(() => heroSlide(1), 4000);
+
+  // ── MOSAIC GRID ──
+  let mosaicSet = 0;
+  const mosaicSets = [0, 1, 2];
+  function mosaicSlide(dir) {
+    const cells = document.querySelectorAll('#mosaicGrid .mosaic-cell');
+    cells.forEach(c => { c.style.display = 'none'; });
+    mosaicSet = (mosaicSet + dir + 3) % 3;
+    cells.forEach(c => {
+      if (parseInt(c.dataset.set) === mosaicSet) c.style.display = 'block';
+    });
+  }
+
+  // ── DETAIL SLIDESHOW ──
+  const detailState = {};
+  function detailSlide(id, dir) {
+    const wrap = document.getElementById(id);
+    const sets = wrap.querySelectorAll('.detail-slide-set');
+    if (!detailState[id]) detailState[id] = 0;
+    sets[detailState[id]].classList.remove('active');
+    detailState[id] = (detailState[id] + dir + sets.length) % sets.length;
+    sets[detailState[id]].classList.add('active');
+  }
 </script>
 </body>
 </html>
